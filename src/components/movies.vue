@@ -3,8 +3,13 @@
         <button @click="randomizeMovie">Randomize a movie to watch</button>
         <button @click="increaseContainer">+</button>
         <button @click="decreaseContainer">-</button>
-
     </div>
+
+    <div v-else="!showMovies" class="buttons">
+        <button @click="randomizeMovie">Randomize a new movie</button>
+        <button @click="back">Back to all movies</button>
+    </div>
+
     <div v-if="showMovies" class="movie-wrapper">
         <div class="movie-container" :style="{ width: widthOnContainer }" v-for="(movie) in moviesData" :key="movie.id">
             <h1 class="movie-title">{{ movie.name }}</h1>
@@ -13,20 +18,13 @@
         </div>
     </div>
 
-    <div v-if="!showMovies" class="buttons">
-        <button @click="randomizeMovie">Randomize a new movie</button>
-        <button @click="back">Back to all movies</button>
-    </div>
-    <div v-if="!showMovies" class="movie-wrapper">
+    <div v-else="!showMovies" class="movie-wrapper">
         <div class="movie-container">
             <h1 class="movie-title">{{ randomMovie.name }}</h1>
             <img class="movie-image" :src="randomMovie.image" alt="Movie Image">
             <p>IMDB {{ randomMovie.aggregateRating.ratingValue }}</p>
         </div>
     </div>
-
-
-
 </template>
 
 <script setup>

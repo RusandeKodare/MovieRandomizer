@@ -1,8 +1,8 @@
 <template>
     <div v-if="showMovies" class="buttons">
+        <button @click="decreaseContainer">-</button>
         <button @click="randomizeMovie">Randomize a movie to watch</button>
         <button @click="increaseContainer">+</button>
-        <button @click="decreaseContainer">-</button>
     </div>
 
     <div v-else="!showMovies" class="buttons">
@@ -19,9 +19,9 @@
     </div>
 
     <div v-else="!showMovies" class="movie-wrapper">
-        <div class="movie-container">
+        <div class="movie-container-single">
             <h1 class="movie-title">{{ randomMovie.name }}</h1>
-            <img class="movie-image" :src="randomMovie.image" alt="Movie Image">
+            <img class="movie-image-single" :src="randomMovie.image" alt="Movie Image">
             <p>IMDB {{ randomMovie.aggregateRating.ratingValue }}</p>
         </div>
     </div>
@@ -108,6 +108,7 @@ button:hover {
 }
 
 .movie-wrapper {
+
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -127,8 +128,27 @@ button:hover {
     margin: 10px;
 }
 
+.movie-container-single {
+    max-width: 35%;
+    border: solid black 2px;
+    background-color: rgb(33, 31, 46);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+}
+
 .movie-image {
-    max-width: 100%;
+    max-width: 90%;
+    height: auto;
+    object-fit: cover;
+}
+
+.movie-image-single {
+    max-width: 550px;
     height: auto;
     object-fit: cover;
 }
